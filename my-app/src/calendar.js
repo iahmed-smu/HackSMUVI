@@ -20,6 +20,9 @@ export default class Calendar extends Component {
     }
   }
 
+  bookApmnt = () => {
+    alert("appointment booked");
+  }
   
    getOption = () => {
     //alert("pressed");
@@ -79,12 +82,12 @@ export default class Calendar extends Component {
             <script>
             document.getElementById("YearInput").readOnly = false;
             </script>
-            {/* <p>{this.months[this.state.currentDay.getMonth()].substring(0, 3)} {this.state.currentDay.getDate()}</p>
-            <button onClick={this.nextMonth}>
+            {/* <p>{this.months[this.state.currentDay.getMonth()].substring(0, 3)} {this.state.currentDay.getDate()}</p> */}
+            <button onClick={this.bookApmnt}>
               <span className="material-icons">
-                Next Day
+                Book Appointment
                 </span>
-            </button> */}
+            </button>
           </div>
         </div>
         <div className="calendar-body">
