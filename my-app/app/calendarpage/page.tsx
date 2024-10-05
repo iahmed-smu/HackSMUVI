@@ -25,13 +25,19 @@ function App() {
 export default App;
  */
 
+export const metadata = {
+  title: 'Sign In - Open PRO',
+  description: 'Page description',
+}
+
+import Link from 'next/link'
+
+
 import logo from './logo.svg';
 import Calendar from './calendar';
 
-function App() {
+export default function CalendarPage() {
   return (
     <Calendar />
   );
 }
-
-export default App;
