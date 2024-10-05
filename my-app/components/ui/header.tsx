@@ -22,6 +22,38 @@ export default function Header() {
             <ul className="flex grow justify-end flex-wrap items-center">
               <li>
                 <Link
+                  href="https://www.smu.edu/studentaffairs/drbobsmithhealthcenter/counseling-services/mentalhealthapps"
+                  className="font-medium text-purple-600 hover:text-gray-200 px-4 py-3 flex items-center transition duration-150 ease-in-out"
+                >
+                  Mental Health Resources  
+                </Link> 
+              </li>
+              <li>
+                <Link
+                  href="https://www.smu.edu/studentaffairs/drbobsmithhealthcenter/counseling-services/mentalhealthapps/smu-teletherapy"
+                  className="font-medium text-purple-600 hover:text-gray-200 px-4 py-3 flex items-center transition duration-150 ease-in-out"
+                >
+                  Teletherapy 
+                </Link> 
+              </li>
+              <li>
+                <Link 
+                  href="/resourcespage" 
+                  className="font-medium text-purple-600 hover:text-gray-200 px-4 py-3 flex items-center transition duration-150 ease-in-out"
+                >
+                  Peer to Peer
+                </Link>
+              </li>
+              <li>
+                <Link 
+                  href="/calendarpage" 
+                  className="font-medium text-purple-600 hover:text-gray-200 px-4 py-3 flex items-center transition duration-150 ease-in-out"
+                >
+                  Calendar
+                </Link>
+              </li>
+              <li>
+                <Link
                   href="/signin"
                   className="font-medium text-purple-600 hover:text-gray-200 px-4 py-3 flex items-center transition duration-150 ease-in-out"
                 >
@@ -29,14 +61,15 @@ export default function Header() {
                 </Link>
               </li>
               <li>
-                <Link href="/signup" className="btn-sm text-white bg-purple-600 hover:bg-purple-700 ml-3">
+                <Link 
+                  href="/signup" 
+                  className="btn-sm text-white bg-purple-600 hover:bg-purple-700 ml-3"
+                >
                   Sign up
                 </Link>
               </li>
               <li>
-                <Link href="/CalendarPage" className="btn-sm text-white bg-purple-600 hover:bg-purple-700 ml-3">
-                  Calendar
-                </Link>
+                
               </li>
             </ul>
           </nav>
