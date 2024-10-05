@@ -1,4 +1,4 @@
-import logo from './logo.svg';
+/* import logo from './logo.svg';
 import './App.css';
 
 function App() {
@@ -19,6 +19,18 @@ function App() {
         </a>
       </header>
     </div>
+  );
+}
+
+export default App;
+ */
+
+import logo from './logo.svg';
+import Calendar from './calendar';
+
+function App() {
+  return (
+    <Calendar />
   );
 }
 
