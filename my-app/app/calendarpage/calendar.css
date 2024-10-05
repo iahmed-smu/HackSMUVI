@@ -3,6 +3,7 @@
     height: 600px;
     display: flex;
     flex-direction: column;
+    margin-top: 100px;
   }
   
   .calendar-header {
@@ -59,7 +60,7 @@
   }
   
   .current p {
-    color: #000000;
+    color: #ffffff;
   }
   
   .selected p {
