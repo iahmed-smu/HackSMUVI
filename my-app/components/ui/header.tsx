@@ -34,7 +34,7 @@ export default function Header() {
                 </Link>
               </li>
               <li>
-                <Link href="/CalendarPage" className="btn-sm text-white bg-purple-600 hover:bg-purple-700 ml-3">
+                <Link href="/calendarpage" className="btn-sm text-white bg-purple-600 hover:bg-purple-700 ml-3">
                   Calendar
                 </Link>
               </li>

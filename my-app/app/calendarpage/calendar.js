@@ -23,6 +23,10 @@ export default class Calendar extends Component {
   bookApmnt = () => {
     alert("appointment booked");
   }
+
+  EnterWorkout = () => {
+    alert("workout entered");
+  }
   
    getOption = () => {
     //alert("pressed");
@@ -37,6 +41,7 @@ export default class Calendar extends Component {
 
   changeCurrentDay = (day) => {
     this.setState({ currentDay: new Date(day.year, day.month, day.number) });
+    document.getElementById("demo").innerHTML = "worked";
   }
 
   nextMonth = () => {
@@ -73,25 +78,33 @@ export default class Calendar extends Component {
             <option value="December">December</option>
         </select>
         </p>
+            
+            <input type="text" id="YearInput" defaultValue="2024"></input>
+            {/* <script>
+            document.getElementById("YearInput").readOnly = false;
+            </script> */}
+            {/* <p>{this.months[this.state.currentDay.getMonth()].substring(0, 3)} {this.state.currentDay.getDate()}</p> */}
             <button onClick={this.getOption}>
               <span className="material-icons">
                 Confirm Month and Year
                 </span>
             </button>
-            <input type="text" id="YearInput" defaultValue="2024"></input>
-            <script>
-            document.getElementById("YearInput").readOnly = false;
-            </script>
-            {/* <p>{this.months[this.state.currentDay.getMonth()].substring(0, 3)} {this.state.currentDay.getDate()}</p> */}
             <button onClick={this.bookApmnt}>
               <span className="material-icons">
                 Book Appointment
+                </span>
+            </button>
+            <input type="text" id="WorkoutInput" defaultValue="No workout"></input>
+            <button onClick={this.EnterWorkout}>
+              <span className="material-icons">
+                Enter Workout
                 </span>
             </button>
           </div>
         </div>
         <div className="calendar-body">
         {/* <button onclick={this.getOption}> Choose Month </button> */}
+            <p id="demo">not yet</p>
           <div className="table-header">
             {
               this.weekdays.map((weekday) => {
