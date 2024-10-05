@@ -25,8 +25,10 @@ export default class Calendar extends Component {
     //alert("pressed");
     let selectElement = document.querySelector('#select1');
     let chosenMonth = selectElement.value;
+    let selectyear = document.querySelector('#YearInput');
+    let chosenyear = selectyear.value;
     //alert(chosenMonth);
-    this.setState({ currentDay: new Date(chosenMonth+" 1, 2024")});
+    this.setState({ currentDay: new Date(chosenMonth+" 1, "+chosenyear)});
     //const firstDayOfMonth = new Date(props.day.getFullYear(), props.day.getMonth(), 1);
     }
 
@@ -51,20 +53,7 @@ export default class Calendar extends Component {
             <h2>{this.months[this.state.currentDay.getMonth()]} {this.state.currentDay.getFullYear()}</h2>
           </div>
           <div className="tools">
-            <button onClick={this.getOption}>
-              <span className="material-icons">
-                Confirm Month
-                </span>
-            </button>
-            {/* <p>{this.months[this.state.currentDay.getMonth()].substring(0, 3)} {this.state.currentDay.getDate()}</p>
-            <button onClick={this.nextMonth}>
-              <span className="material-icons">
-                Next Day
-                </span>
-            </button> */}
-          </div>
-        </div>
-        <div className="calendar-body">
+            
         <p> Select Month
         <select id="select1">
             <option value="January">January</option>
@@ -81,7 +70,25 @@ export default class Calendar extends Component {
             <option value="December">December</option>
         </select>
         </p>
-        <button onclick={this.getOption}> Choose Month </button>
+            <button onClick={this.getOption}>
+              <span className="material-icons">
+                Confirm Month and Year
+                </span>
+            </button>
+            <input type="text" id="YearInput" defaultValue="2024"></input>
+            <script>
+            document.getElementById("YearInput").readOnly = false;
+            </script>
+            {/* <p>{this.months[this.state.currentDay.getMonth()].substring(0, 3)} {this.state.currentDay.getDate()}</p>
+            <button onClick={this.nextMonth}>
+              <span className="material-icons">
+                Next Day
+                </span>
+            </button> */}
+          </div>
+        </div>
+        <div className="calendar-body">
+        {/* <button onclick={this.getOption}> Choose Month </button> */}
           <div className="table-header">
             {
               this.weekdays.map((weekday) => {
