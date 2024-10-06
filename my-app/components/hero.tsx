@@ -79,7 +79,8 @@ const WorkoutForm = () => {
         throw new Error('Failed to fetch workout');
       }
       const data = await response.json();
-      console.log(data);
+      //console.log(data);\
+      document.getElementById("displayer").innerHTML=data;
       setWorkoutData(data);
     } catch (error) {
       console.error('Error fetching workout:', error);
@@ -118,6 +119,9 @@ const WorkoutForm = () => {
           onChange={(e) => setGetDate(e.target.value)} 
         />
         <button onClick={handleGetWorkout()}>Get Workout</button>
+      </div>
+      <div>
+        <p id="displayer"></p>
       </div>
 
       {workoutData && (
