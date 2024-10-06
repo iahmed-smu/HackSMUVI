@@ -80,7 +80,7 @@ const WorkoutForm = () => {
       }
       const data = await response.json();
       //console.log(data);\
-      document.getElementById("displayer").innerHTML=data;
+      (document.getElementById('disoplayer') as HTMLFormElement).innerHTML=data;
       setWorkoutData(data);
     } catch (error) {
       console.error('Error fetching workout:', error);
