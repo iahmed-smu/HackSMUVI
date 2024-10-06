@@ -1,7 +1,7 @@
 import VideoThumb from '@/public/images/hero-image-01.jpg'
 import ModalVideo from '@/components/modal-video'
-
-export default function Hero() {
+"use client";
+export function Hero() {
   return (
     <section>
       <div className="max-w-6xl mx-auto px-4 sm:px-6 relative">
@@ -33,3 +33,102 @@ export default function Hero() {
     </section>
   )
 }
+
+import React, { useState } from 'react';
+
+const WorkoutForm = () => {
+  const [date, setDate] = useState('');
+  const [description, setDescription] = useState('');
+  const [workoutData, setWorkoutData] = useState(null);
+  const [getDate, setGetDate] = useState('');
+
+  // Handle the POST request to submit data
+  const handleSubmit = async (event) => {
+    //event.preventDefault();
+    try {
+      const response = await fetch('http://localhost:8080/workouts', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          date: "10-12-2024",
+          description: "hi",
+        }),
+      });
+      //console.log(response);
+      if (!response.ok) {
+        throw new Error('Failed to submit workout');
+      }
+      
+      //alert('Workout submitted successfully!');
+      setDate('');
+      setDescription('');
+    } catch (error) {
+      console.error('Error posting workout:', error);
+    }
+  };
+
+  // Handle the GET request to retrieve data
+  const handleGetWorkout = async () => {
+    console.log("called get");
+    try {
+      const response = await fetch(`http://localhost:8080/workouts/10-12-2024`);
+
+      if (!response.ok) {
+        throw new Error('Failed to fetch workout');
+      }
+      const data = await response.json();
+      console.log(data);
+      setWorkoutData(data);
+    } catch (error) {
+      console.error('Error fetching workout:', error);
+    }
+  };
+
+  return (
+    <div style={{marginTop:"150px"}}>
+      <h2>Submit a Workout</h2>
+      <form onSubmit={handleSubmit}>
+        <div>
+          <label>Date:</label>
+          <input 
+            type="text" 
+            value={date} 
+            onChange={(e) => setDate(e.target.value)} 
+            required 
+          />
+        </div>
+        <div>
+          <label>Description:</label>
+          <textarea 
+            value={description} 
+            onChange={(e) => setDescription(e.target.value)} 
+            required 
+          />
+        </div>
+        <button onClick={handleSubmit()}>Submit Workout</button>
+      </form>
+
+      <h2>Get Workout by Date</h2>
+      <div>
+        <input 
+          type="text" 
+          value={getDate} 
+          onChange={(e) => setGetDate(e.target.value)} 
+        />
+        <button onClick={handleGetWorkout()}>Get Workout</button>
+      </div>
+
+      {workoutData && (
+        <div>
+          <h3>Workout on {getDate}</h3>
+          <p><strong>Date:</strong> {workoutData.date}</p>
+          <p><strong>Description:</strong> {workoutData.description}</p>
+        </div>
+      )}
+    </div>
+  );
+};
+
+export default WorkoutForm;
