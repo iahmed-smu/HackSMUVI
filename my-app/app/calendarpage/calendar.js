@@ -3,6 +3,7 @@
 import React, { Component } from 'react';
 import CalendarDays from './calendar-days';
 import './calendar.css'
+import { eventNames } from 'process';
 
 
 
@@ -22,21 +23,38 @@ export default class Calendar extends Component {
 
   bookApmnt = () => {
     alert("appointment booked");
-    /* var exec = require('child_process').exec;
-    //
-    exec('cat *.js bad_file | wc -l',
-        function (error, stdout, stderr) {
-            console.log('stdout: ' + stdout);
-            console.log('stderr: ' + stderr);
-            if (error !== null) {
-                console.log('exec error: ' + error);
-            }
-        }); */
+    
+
   }
 
   EnterWorkout = () => {
-    alert("workout entered");
+    const workoutDescription = document.getElementById("WorkoutInput").value;
+    const workoutDate = this.state.currentDay.toISOString().split('T')[0]; // Format date as YYYY-MM-DD
+  
+    const workoutData = {
+      date: workoutDate,
+      description: workoutDescription
+    };
+  
+    fetch('http://localhost:8080/workouts', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(workoutData),
+    })
+    .then(response => response.json())
+    .then(data => {
+      console.log('Success:', data);
+      alert('Workout entered successfully');
+    })
+    .catch((error) => {
+      console.error('Error:', error);
+      alert('Error entering workout');
+    });
   }
+  
+
   
    getOption = () => {
     //alert("pressed");
