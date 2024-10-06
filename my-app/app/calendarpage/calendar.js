@@ -80,7 +80,58 @@ export default class Calendar extends Component {
   previousMonth = () => {
     this.setState({ currentDay: new Date(this.state.currentDay.setDate(this.state.currentDay.getDate() - 1)) });
   }
+
+   WorkoutForm = () => {
+    const [date, setDate] = useState('');
+    const [description, setDescription] = useState('');
+    const [workoutData, setWorkoutData] = useState(null);
+    const [getDate, setGetDate] = useState('');
   
+    // Handle the POST request to submit data
+     handleSubmit = async (event) => {
+      //event.preventDefault();
+      try {
+        const response = await fetch('http://localhost:8080/workouts', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            date: "10-12-2024",
+            description: "hi",
+          }),
+        });
+        //console.log(response);
+        if (!response.ok) {
+          throw new Error('Failed to submit workout');
+        }
+        
+        //alert('Workout submitted successfully!');
+        setDate('');
+        setDescription('');
+      } catch (error) {
+        console.error('Error posting workout:', error);
+      }
+    };
+  
+    // Handle the GET request to retrieve data
+     handleGetWorkout = async () => {
+      console.log("called get");
+      try {
+        const response = await fetch(`http://localhost:8080/workouts/10-12-2024`);
+  
+        if (!response.ok) {
+          throw new Error('Failed to fetch workout');
+        }
+        const data = await response.json();
+        document.getElementById("workoutOut").innerHTML = data;
+        setWorkoutData(data);
+      } catch (error) {
+        console.error('Error fetching workout:', error);
+      }
+    };
+   }
+
   render() {
     return (
       <div className="calendar">
@@ -106,7 +157,49 @@ export default class Calendar extends Component {
             <option value="December">December</option>
         </select>
         </p>
-            
+        <div style={{marginTop:"150px"}}>
+      <h2>Submit a Workout</h2>
+      <form onSubmit={this.handleSubmit}>
+        <div>
+          <label>Date:</label>
+          <input 
+            type="text" 
+            value={this.state.currentDay} 
+            onChange={(e) => setDate(e.target.value)} 
+            required 
+          />
+        </div>
+        <div>
+          <label>Description:</label>
+          <textarea 
+            value={"description"} 
+            onChange={(e) => setDescription(e.target.value)} 
+            required 
+          />
+        </div>
+        <button onClick={this.handleSubmit}>Submit Workout</button>
+      </form>
+
+      <h2>Get Workout by Date</h2>
+      <div>
+        <input 
+          type="text" 
+          value={this.state.currentDay.getDate()} 
+          onChange={(e) => setGetDate(e.target.value)} 
+        />
+        <button onClick={this.handleGetWorkout}>Get Workout</button>
+      </div>
+
+      {"wokroutdata" && (
+        <div>
+          <h3>Workout on {this.state.currentDay.getDate()}</h3>
+          <p><strong>Date:</strong> {this.state.currentDay.getDate()}</p>
+          <p><strong>Description:</strong> {"description"}</p>
+        </div>
+      )}
+    </div>
+    
+    <div>
             <input type="text" id="YearInput" defaultValue="2024"></input>
             {/* <script>
             document.getElementById("YearInput").readOnly = false;
@@ -124,16 +217,19 @@ export default class Calendar extends Component {
                 </span>
             </button>
             </div>
+            <p id="workoutOut"></p>
             <div>
-            <input type="text" id="WorkoutInput" defaultValue="No workout"></input>
+            {/* <input type="text" id="WorkoutInput" defaultValue="No workout"></input>
             <button onClick={this.EnterWorkout}>
               <span className="material-icons">
                 Enter Workout
                 </span>
-            </button>
+            </button> */}
             </div>
           </div>
         </div>
+        
+        
         <div className="calendar-body">
         {/* <button onclick={this.getOption}> Choose Month </button> */}
             <p id="demo">not yet</p>
@@ -144,9 +240,12 @@ export default class Calendar extends Component {
               })
             }
           </div>
+          
           <CalendarDays day={this.state.currentDay} changeCurrentDay={this.changeCurrentDay} />
         </div>
+        </div>
       </div>
+      
     )
   }
   
@@ -165,4 +264,3 @@ export default class Calendar extends Component {
     resultElement.textContent = 'Please select a month first!';
   } */
 //}
-

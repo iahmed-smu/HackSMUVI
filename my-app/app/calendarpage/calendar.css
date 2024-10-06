@@ -4,7 +4,7 @@
     display: flex;
     flex-direction: column;
     margin-top: 100px;
-    float: left;
+    float: right;
   }
   
   .calendar-header {
@@ -19,7 +19,7 @@
     flex-grow: 1;
     display: flex;
     flex-direction: column;
-    float: left;
+    float: right;
   }
   
   .table-header {
