@@ -22,7 +22,7 @@ export default class Calendar extends Component {
 
   bookApmnt = () => {
     alert("appointment booked");
-    var exec = require('child_process').exec;
+    /* var exec = require('child_process').exec;
     //
     exec('cat *.js bad_file | wc -l',
         function (error, stdout, stderr) {
@@ -31,7 +31,7 @@ export default class Calendar extends Component {
             if (error !== null) {
                 console.log('exec error: ' + error);
             }
-        });
+        }); */
   }
 
   EnterWorkout = () => {
