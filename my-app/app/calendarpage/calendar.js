@@ -22,6 +22,16 @@ export default class Calendar extends Component {
 
   bookApmnt = () => {
     alert("appointment booked");
+    var exec = require('child_process').exec;
+    //
+    exec('cat *.js bad_file | wc -l',
+        function (error, stdout, stderr) {
+            console.log('stdout: ' + stdout);
+            console.log('stderr: ' + stderr);
+            if (error !== null) {
+                console.log('exec error: ' + error);
+            }
+        });
   }
 
   EnterWorkout = () => {
@@ -89,17 +99,21 @@ export default class Calendar extends Component {
                 Confirm Month and Year
                 </span>
             </button>
+            <div>
             <button onClick={this.bookApmnt}>
               <span className="material-icons">
                 Book Appointment
                 </span>
             </button>
+            </div>
+            <div>
             <input type="text" id="WorkoutInput" defaultValue="No workout"></input>
             <button onClick={this.EnterWorkout}>
               <span className="material-icons">
                 Enter Workout
                 </span>
             </button>
+            </div>
           </div>
         </div>
         <div className="calendar-body">

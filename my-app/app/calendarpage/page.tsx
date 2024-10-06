@@ -36,6 +36,9 @@ import Link from 'next/link'
 import logo from './logo.svg';
 import Calendar from './calendar';
 
+/* var mongodbRest = require('mongodb-rest/server.js');
+mongodbRest.startServer(); */
+
 export default function CalendarPage() {
   return (
     <Calendar />
